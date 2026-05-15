@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bar Eros — Torino</title>
+  <meta name="description" content="Bar Eros, il tuo bar di quartiere a Borgo San Paolo, Torino. Colazione, pranzo, aperitivo. Via Caraglio 34/B." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --gold: #c9922a;
+      --amber: #e8a020;
+      --cream: #faf6ef;
+      --off-white: #f5f0e8;
+      --charcoal: #1a1a1a;
+      --footer-black: #000000;
+      --shadow-gold: 0 4px 24px rgba(201,146,42,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--off-white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── FADE-UP ANIMATION ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: #000;
+      border-bottom: 1px solid var(--gold);
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo img {
+      max-height: 55px;
+      object-fit: contain;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-center a {
+      color: var(--off-white);
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-center a:hover { color: var(--gold); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0.3rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .lang-toggle button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gold);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    .lang-toggle button.active { opacity: 1; }
+    .lang-toggle span { opacity: 0.4; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--off-white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('images/hero.png') center center / cover no-repeat;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.62);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      padding: 2rem 1.5rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,146,42,0.18);
+      border: 1px solid rgba(201,146,42,0.5);
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 30px rgba(201,146,42,0.3);
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--cream);
+      margin-bottom: 1.4rem;
+      line-height: 1.5;
+    }
+
+    .hero-tiktok {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: rgba(245,240,232,0.65);
+      margin-bottom: 2rem;
+    }
+
+    .hero-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      font-size: 0.88rem;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-icons span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.9;
+    }
+
+    .hero-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--cream);
+    }
+
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.4); }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--gold);
+      font-size: 1.4rem;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 2rem; }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+      font-weight: 500;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-style: italic;
+      margin-bottom: 3rem;
+    }
+
+    .section-divider {
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.6rem auto 2.8rem;
+    }
+
+    /* ── OFFER CARDS ── */
+    #offer {
+      background: var(--charcoal);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--black);
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 10px;
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: rgba(245,240,232,0.75);
+      line-height: 1.7;
+    }
+
+    /* ── APERITIVO GALLERY ── */
+    #aperitivo {
+      background: var(--black);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.07); }
+
+    .gallery-item::after {
+      content: 'Bar Eros · Via Caraglio';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.82));
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 1.2rem 0.5rem 0.7rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover::after { opacity: 1; }
+
+    .gallery-item:hover {
+      border: 2px solid var(--gold);
+    }
+
+    /* ── FOOD GALLERY ── */
+    #food {
+      background: var(--charcoal);
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .food-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+
+    .food-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .food-item:hover img { transform: scale(1.07); }
+
+    .food-item:hover {
+      outline: 2px solid var(--gold);
+    }
+
+    .food-item::after {
+      content: 'Bar Eros · Via Caraglio';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.82));
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 1.2rem 0.5rem 0.7rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .food-item:hover::after { opacity: 1; }
+
+    /* ── TOO GOOD TO GO ── */
+    #tgtg {
+      background: var(--gold);
+      color: #000;
+      text-align: center;
+      padding: 4.5rem 2rem;
+    }
+
+    #tgtg h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-style: italic;
+      color: #000;
+      margin-bottom: 1.2rem;
+    }
+
+    #tgtg p {
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      color: rgba(0,0,0,0.78);
+      line-height: 1.8;
+    }
+
+    .tgtg-btn {
+      display: inline-block;
+      background: #000;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      letter-spacing: 0.04em;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tgtg-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--cream);
+      color: #1a1a1a;
+    }
+
+    #about .section-title { color: #1a1a1a; }
+    #about .section-label { color: var(--gold); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      max-width: 1050px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .about-img img {
+      width: 100%;
+      border-radius: 10px;
+      border: 3px solid var(--gold);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .about-text h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-style: italic;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.05rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .about-body {
+      color: rgba(26,26,26,0.78);
+      font-size: 0.95rem;
+      line-height: 1.85;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--black);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .contact-info p {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      font-size: 0.93rem;
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .contact-info i {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .hours-block {
+      margin-top: 0.5rem;
+      background: var(--charcoal);
+      border: 1px solid rgba(201,146,42,0.2);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+    }
+
+    .hours-block .hours-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hours-block p {
+      font-size: 0.88rem;
+      color: rgba(245,240,232,0.75);
+      display: flex;
+      gap: 0;
+      align-items: flex-start;
+      margin-bottom: 0.15rem;
+    }
+
+    .map-embed {
+      margin-top: 1.5rem;
+    }
+
+    .map-embed iframe {
+      border: 0;
+      border-radius: 10px;
+      width: 100%;
+      height: 220px;
+    }
+
+    /* ── FORM ── */
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      background: var(--charcoal);
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 8px;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      padding: 0.85rem 1.1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .contact-form textarea { min-height: 130px; }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(245,240,232,0.35);
+    }
+
+    .form-submit {
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      padding: 0.9rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover {
+      background: var(--amber);
+      transform: translateY(-2px);
+    }
+
+    .form-success {
+      display: none;
+      background: rgba(201,146,42,0.12);
+      border: 1px solid rgba(201,146,42,0.4);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      color: var(--gold);
+      font-size: 0.92rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-black);
+      padding: 2.8rem 2rem;
+      border-top: 1px solid rgba(201,146,42,0.2);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .footer-left img {
+      max-height: 40px;
+      object-fit: contain;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-left p {
+      font-size: 0.8rem;
+      color: rgba(245,240,232,0.45);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-center {
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(245,240,232,0.3);
+      line-height: 1.7;
+    }
+
+    .footer-right {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .footer-right a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .footer-right a:hover { color: var(--amber); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .cards-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-right { justify-content: center; }
+      .footer-left { align-items: center; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-center { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: #000; padding: 1.5rem 2rem; gap: 1rem; border-bottom: 1px solid var(--gold); }
+      .nav-center.open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      #navbar { padding: 0 1rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .food-grid { grid-template-columns: 1fr; }
+      .hero-icons { gap: 0.8rem; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#hero">
+      <img src="images/logo.png" alt="Bar Eros" style="max-height:55px;object-fit:contain;" />
+    </a>
+
+    <ul class="nav-center" id="navLinks">
+      <li><a href="#offer" data-it="Menu" data-en="Menu">Menu</a></li>
+      <li><a href="#aperitivo" data-it="Aperitivo" data-en="Aperitivo">Aperitivo</a></li>
+      <li><a href="#about" data-it="Chi siamo" data-en="About">Chi siamo</a></li>
+      <li><a href="#contact" data-it="Contatti" data-en="Contact">Contatti</a></li>
+    </ul>
+
+    <div style="display:flex;align-items:center;gap:1.2rem;">
+      <div class="lang-toggle">
+        <button id="btnIT" class="active" onclick="setLang('it')">IT</button>
+        <span>|</span>
+        <button id="btnEN" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🍹 Via Caraglio 34/B &middot; Torino &middot; Borgo San Paolo</div>
+      <h1 class="hero-title">Bar Eros</h1>
+      <p class="hero-sub">
+        <span data-it="Colazione · Pranzo · Aperitivo<br>Il tuo bar di quartiere a Torino"
+              data-en="Breakfast · Lunch · Aperitivo<br>Your neighbourhood bar in Turin">
+          Colazione · Pranzo · Aperitivo<br>Il tuo bar di quartiere a Torino
+        </span>
+      </p>
+      <p class="hero-tiktok">"Aperitivi, sempre al Top da Bar Eros! 🍹"</p>
+      <div class="hero-icons">
+        <span>☕ <span data-it="Colazione" data-en="Breakfast">Colazione</span></span>
+        <span>🥪 <span data-it="Pranzo" data-en="Lunch">Pranzo</span></span>
+        <span>🍹 Aperitivo</span>
+        <span>🛍️ Too Good To Go</span>
+      </div>
+      <p class="hero-open">
+        <span class="pulse-dot"></span>
+        <span data-it="Aperto oggi · 07:00 – 21:00" data-en="Open today · 07:00 – 21:00">Aperto oggi · 07:00 – 21:00</span>
+      </p>
+    </div>
+    <div class="hero-scroll"><i class="fa fa-chevron-down"></i></div>
+  </section>
+
+  <!-- WHAT WE OFFER -->
+  <section id="offer">
+    <p class="section-label fade-up">— Bar Eros —</p>
+    <h2 class="section-title fade-up" data-it="Cosa Offriamo" data-en="What We Offer">Cosa Offriamo</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="cards-grid">
+
+      <div class="card fade-up">
+        <div class="card-icon">☕</div>
+        <h3 data-it="Colazione" data-en="Breakfast">Colazione</h3>
+        <p data-it="Cornetti freschi, cappuccino cremoso, caffè espresso. La colazione perfetta per iniziare la giornata."
+           data-en="Fresh pastries, creamy cappuccino, espresso. The perfect breakfast to start your day.">
+          Cornetti freschi, cappuccino cremoso, caffè espresso. La colazione perfetta per iniziare la giornata.
+        </p>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-icon">🥪</div>
+        <h3 data-it="Pranzo" data-en="Lunch">Pranzo</h3>
+        <p data-it="Panini, tramezzini e piatti del giorno. Veloce, buono, a prezzi onesti."
+           data-en="Sandwiches, tramezzini and daily specials. Fast, good, at honest prices.">
+          Panini, tramezzini e piatti del giorno. Veloce, buono, a prezzi onesti.
+        </p>
+      </div>
+
+      <div class="card fade-up">
+        <div class="card-icon">🍹</div>
+        <h3>Aperitivo</h3>
+        <p data-it="Spritz, Negroni, cocktail e taglieri. L'aperitivo torinese come si deve — sempre al top!"
+           data-en="Spritz, Negroni, cocktails and boards. Turin aperitivo at its finest — always top quality!">
+          Spritz, Negroni, cocktail e taglieri. L'aperitivo torinese come si deve — sempre al top!
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- APERITIVO GALLERY -->
+  <section id="aperitivo">
+    <p class="section-label fade-up">— Gallery —</p>
+    <h2 class="section-title fade-up" data-it="I Nostri Aperitivi" data-en="Our Aperitivos">I Nostri Aperitivi</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-up"><img src="images/drink-1.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+      <div class="gallery-item fade-up"><img src="images/drink-2.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+      <div class="gallery-item fade-up"><img src="images/drink-3.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+      <div class="gallery-item fade-up"><img src="images/drink-4.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+      <div class="gallery-item fade-up"><img src="images/drink-5.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+      <div class="gallery-item fade-up"><img src="images/drink-6.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+      <div class="gallery-item fade-up"><img src="images/drink-7.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+      <div class="gallery-item fade-up"><img src="images/drink-8.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+      <div class="gallery-item fade-up"><img src="images/drink-9.png" alt="Aperitivo Bar Eros" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- FOOD GALLERY -->
+  <section id="food">
+    <p class="section-label fade-up">— Da Mangiare —</p>
+    <h2 class="section-title fade-up" data-it="Da Mangiare" data-en="To Eat">Da Mangiare</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="food-grid">
+      <div class="food-item fade-up"><img src="images/food-1.png" alt="Cibo Bar Eros" loading="lazy" /></div>
+      <div class="food-item fade-up"><img src="images/food-2.png" alt="Cibo Bar Eros" loading="lazy" /></div>
+      <div class="food-item fade-up"><img src="images/food-3.png" alt="Cibo Bar Eros" loading="lazy" /></div>
+      <div class="food-item fade-up"><img src="images/food-4.png" alt="Cibo Bar Eros" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- TOO GOOD TO GO -->
+  <section id="tgtg">
+    <h2 class="fade-up" data-it="🛍️ Siamo su Too Good To Go!" data-en="🛍️ Find us on Too Good To Go!">🛍️ Siamo su Too Good To Go!</h2>
+    <p class="fade-up"
+       data-it="Salva i nostri prodotti freschi a fine giornata e riduci gli sprechi alimentari. Cestini a prezzi scontati — buono per te, buono per il pianeta."
+       data-en="Save our fresh products at end of day and help reduce food waste. Discounted baskets — good for you, good for the planet.">
+      Salva i nostri prodotti freschi a fine giornata e riduci gli sprechi alimentari. Cestini a prezzi scontati — buono per te, buono per il pianeta.
+    </p>
+    <a href="https://www.toogoodtogo.com/it-it" target="_blank" rel="noopener" class="tgtg-btn fade-up"
+       data-it="Trova Bar Eros su Too Good To Go →"
+       data-en="Find Bar Eros on Too Good To Go →">
+      Trova Bar Eros su Too Good To Go →
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label fade-up">— Bar Eros —</p>
+    <h2 class="section-title fade-up" data-it="Chi Siamo" data-en="About Us">Chi Siamo</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="about-grid">
+      <div class="about-img fade-up">
+        <img src="images/drink-1.png" alt="Bar Eros Torino" />
+      </div>
+      <div class="about-text fade-up">
+        <h2 data-it="Il tuo bar di quartiere." data-en="Your neighbourhood bar.">Il tuo bar di quartiere.</h2>
+        <p class="about-tagline" data-it="Caldo, autentico, sempre al top." data-en="Warm, authentic, always top quality.">
+          Caldo, autentico, sempre al top.
+        </p>
+        <p class="about-body"
+           data-it="Bar Eros è il punto di riferimento del Borgo San Paolo. Dal mattino alla sera, ti accogliamo con un sorriso — per una colazione veloce, un pranzo in pausa o un aperitivo con gli amici. Vieni a trovarci in Via Caraglio 34/B."
+           data-en="Bar Eros is the reference point of Borgo San Paolo. From morning to evening, we welcome you with a smile — for a quick breakfast, a lunch break or an aperitivo with friends. Come visit us at Via Caraglio 34/B.">
+          Bar Eros è il punto di riferimento del Borgo San Paolo. Dal mattino alla sera, ti accogliamo con un sorriso — per una colazione veloce, un pranzo in pausa o un aperitivo con gli amici. Vieni a trovarci in Via Caraglio 34/B.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label fade-up">— Dove siamo —</p>
+    <h2 class="section-title fade-up" data-it="Contatti &amp; Orari" data-en="Contact &amp; Hours">Contatti &amp; Orari</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="contact-grid">
+
+      <div class="contact-info fade-up">
+        <p><i class="fa fa-map-marker-alt"></i> Via Caraglio 34/B, 10141 Torino</p>
+        <p><i class="fa-brands fa-tiktok"></i> TikTok: @bareros5</p>
+        <p><i class="fa fa-shopping-bag"></i> Too Good To Go: Bar Eros</p>
+
+        <div class="hours-block">
+          <p class="hours-title"><i class="fa fa-clock" style="margin-right:0.4rem;"></i><span data-it="Orari" data-en="Hours">Orari</span></p>
+          <p data-it="Lun – Sab: &nbsp;07:00 – 21:00" data-en="Mon – Sat: &nbsp;07:00 – 21:00">Lun – Sab: &nbsp;07:00 – 21:00</p>
+          <p data-it="Dom: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chiuso" data-en="Sun: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Closed">Dom: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chiuso</p>
+        </div>
+
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps?q=Via+Caraglio+34%2FB,+10141+Torino&output=embed"
+            width="100%"
+            height="220"
+            style="border:0;border-radius:10px;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <form id="contactForm" onsubmit="handleForm(event)">
+          <input type="text" id="fieldName" placeholder="Nome" data-it-placeholder="Nome" data-en-placeholder="Name" required />
+          <input type="email" id="fieldEmail" placeholder="Email" required />
+          <textarea id="fieldMsg" placeholder="Messaggio" data-it-placeholder="Messaggio" data-en-placeholder="Message" required></textarea>
+          <button type="submit" class="form-submit">
+            <span data-it="Invia →" data-en="Send →">Invia →</span>
+          </button>
+          <div class="form-success" id="formSuccess"
+               data-it="Grazie! Ti risponderemo al più presto."
+               data-en="Thank you! We'll get back to you soon.">
+            Grazie! Ti risponderemo al più presto.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="images/logo.png" alt="Bar Eros" />
+        <p data-it="Bar · Caffetteria · Aperitivo · Torino" data-en="Bar · Café · Aperitivo · Turin">
+          Bar · Caffetteria · Aperitivo · Torino
+        </p>
+      </div>
+      <div class="footer-center">
+        © 2026 &nbsp;·&nbsp; Via Caraglio 34/B &nbsp;·&nbsp; 10141 Torino
+      </div>
+      <div class="footer-right">
+        <a href="https://www.tiktok.com/@bareros5" target="_blank" rel="noopener">
+          <i class="fa-brands fa-tiktok"></i> @bareros5
+        </a>
+        <a href="https://www.toogoodtogo.com/it-it" target="_blank" rel="noopener">
+          🛍️ Too Good To Go
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── LANGUAGE TOGGLE ── */
+    let currentLang = 'it';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.getElementById('btnIT').classList.toggle('active', lang === 'it');
+      document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+
+      // data-it / data-en text elements
+      document.querySelectorAll('[data-it],[data-en]').forEach(el => {
+        const val = el.getAttribute('data-' + lang);
+        if (val !== null) {
+          if (el.tagName === 'A' || el.tagName === 'BUTTON' || el.tagName === 'P' || el.tagName === 'H2' || el.tagName === 'SPAN' || el.tagName === 'LI') {
+            el.innerHTML = val;
+          } else {
+            el.textContent = val;
+          }
+        }
+      });
+
+      // placeholder attributes
+      document.querySelectorAll('[data-it-placeholder],[data-en-placeholder]').forEach(el => {
+        const ph = el.getAttribute('data-' + lang + '-placeholder');
+        if (ph) el.placeholder = ph;
+      });
+    }
+
+    /* ── MOBILE NAV ── */
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // close nav on link click
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+
+    /* ── FORM ── */
+    function handleForm(e) {
+      e.preventDefault();
+      const success = document.getElementById('formSuccess');
+      const msg = currentLang === 'en'
+        ? "Thank you! We'll get back to you soon."
+        : "Grazie! Ti risponderemo al più presto.";
+      success.textContent = msg;
+      success.style.display = 'block';
+      e.target.reset();
+      setTimeout(() => { success.style.display = 'none'; }, 5000);
+    }
+
+    /* ── FADE-UP ON SCROLL ── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    /* ── NAVBAR SCROLL SHADOW ── */
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,0.6)' : 'none';
+    });
+  </script>
+
+</body>
+</html>
